@@ -1,0 +1,35 @@
+# Redis Command Version Metadata
+# Records when a command or its parameters were introduced.
+commands:
+  SET:
+    since: "1.0.0"
+    params:
+      EX: { since: "2.6.12" }
+      PX: { since: "2.6.12" }
+      NX: { since: "2.6.12" }
+      XX: { since: "2.6.12" }
+      GET: { since: "6.2.0" }
+  GET:
+    since: "1.0.0"
+  DEL:
+    since: "1.0.0"
+  EXISTS:
+    since: "1.0.0"
+  EXPIRE:
+    since: "1.0.0"
+  KEYS:
+    since: "1.0.0"
+  FLUSHALL:
+    since: "1.0.0"
+  FLUSHDB:
+    since: "1.0.0"
+  ZPOPMAX:
+    since: "5.0.0"
+  XADD:
+    since: "5.0.0"
+  COPY:
+    since: "6.2.0"
+  GETEX:
+    since: "6.2.0"
+  GETDEL:
+    since: "6.2.0"

@@ -1,0 +1,4 @@
+packaging
+pyyaml
+flask
+redis
