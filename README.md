@@ -40,6 +40,32 @@ python3 app.py --config config/default_config.yaml --port 5000 \
   --log-file /var/log/pyredisaudit/audit.log --log-level INFO
 ```
 
+或者使用项目自带脚本启动/停止（适合后台运行）：
+
+启动：
+```bash
+./startup.sh
+```
+
+停止：
+```bash
+./stop.sh
+```
+
+脚本支持通过环境变量覆盖启动参数：
+```bash
+CONFIG_FILE=/path/to/config.yaml \
+HOST=0.0.0.0 \
+PORT=5000 \
+LOG_FILE=/var/log/pyredisaudit/audit.log \
+LOG_LEVEL=INFO \
+./startup.sh
+```
+
+脚本默认行为：
+- PID 文件：`run/pyredisaudit.pid`
+- stdout 日志：`logs/stdout.log`
+
 ### 3. 使用接口进行审计
 发送 POST 请求到 `/audit` 接口，提交需要审计的命令：
 
