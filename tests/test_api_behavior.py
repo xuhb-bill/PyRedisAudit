@@ -27,6 +27,9 @@ class TestApiBehavior(unittest.TestCase):
     def test_empty_body(self):
         resp = self.client.post("/audit")
         self.assertEqual(resp.status_code, 400)
+        data = resp.get_json()
+        self.assertEqual(data["code"], 40001)
+        self.assertEqual(data["status"], "failed")
 
     def test_check_defaults_to_1_execute_defaults_to_0(self):
         resp = self.client.post(
@@ -35,10 +38,9 @@ class TestApiBehavior(unittest.TestCase):
         )
         self.assertEqual(resp.status_code, 200)
         data = resp.get_json()
-        self.assertEqual(data["check"], 1)
-        self.assertEqual(data["execute"], 0)
-        self.assertEqual(data["results"][0]["syntax"]["status"], "passed")
-        self.assertIn("audit", data["results"][0])
+        self.assertEqual(data["code"], 2002)
+        self.assertEqual(data["status"], "warning")
+        self.assertIn("missing TTL", data["msg"])
 
     def test_check_1_forces_execute_0(self):
         resp = self.client.post(
@@ -47,9 +49,8 @@ class TestApiBehavior(unittest.TestCase):
         )
         self.assertEqual(resp.status_code, 200)
         data = resp.get_json()
-        self.assertEqual(data["check"], 1)
-        self.assertEqual(data["execute"], 0)
-        self.assertNotIn("execute", data["results"][0])
+        self.assertEqual(data["code"], 2002)
+        self.assertEqual(data["status"], "warning")
 
     def test_execute_requires_redis_info(self):
         resp = self.client.post(
@@ -57,12 +58,16 @@ class TestApiBehavior(unittest.TestCase):
             json={"command": "SET k v EX 10", "check": 0, "execute": 1}
         )
         self.assertEqual(resp.status_code, 400)
-        self.assertIn("redis_info", resp.get_json()["error"])
+        data = resp.get_json()
+        self.assertEqual(data["code"], 40004)
+        self.assertEqual(data["status"], "failed")
+        self.assertIn("redis_info", data["msg"])
 
     def test_execute_success_path_uses_tokens(self):
         fake_client = mock.MagicMock()
         fake_client.connect.return_value = (True, "Success")
         fake_client.get_server_version.return_value = "7.0.0"
+        fake_client.key_exists.return_value = False
         fake_client.execute.return_value = (True, "OK")
 
         with mock.patch.object(app_module, "RedisClient", return_value=fake_client):
@@ -78,7 +83,5 @@ class TestApiBehavior(unittest.TestCase):
 
         self.assertEqual(resp.status_code, 200)
         data = resp.get_json()
-        self.assertEqual(data["check"], 0)
-        self.assertEqual(data["execute"], 1)
-        self.assertEqual(data["target_redis_version"], "7.0.0")
-        self.assertEqual(data["results"][0]["execute"]["status"], "succeeded")
+        self.assertEqual(data["code"], 0)
+        self.assertEqual(data["status"], "passed")

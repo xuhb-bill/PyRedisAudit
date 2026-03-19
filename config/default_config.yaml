@@ -18,7 +18,7 @@ rules:
     enable: true
     level: "error"
     params:
-      forbidden: ["FLUSHALL", "FLUSHDB", "KEYS", "SHUTDOWN"]
+      forbidden: ["FLUSHALL", "FLUSHDB", "KEYS", "SHUTDOWN","EVAL","SCRIPT","EVALSHA"]
 
   # Check Key naming convention
   check_key_naming:

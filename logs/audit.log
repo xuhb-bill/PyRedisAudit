@@ -108,3 +108,22 @@
 2026-03-18 17:09:00,719 - RedisAuditor - INFO - Using server version 7.0.0 for audit
 2026-03-18 17:09:40,377 - RedisAuditor - INFO - Using server version 5.0.8 for audit
 2026-03-18 17:09:40,378 - RedisAuditor - WARNING - Command 'flushdb' failed audit: High-risk command 'FLUSHDB' is forbidden (Level: error)
+2026-03-19 10:01:25,020 - RedisAuditor - WARNING - Command 'SET dba-test 12345' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
+2026-03-19 10:01:25,021 - RedisAuditor - WARNING - Command 'SET dba-test 12345' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
+2026-03-19 10:01:25,023 - RedisAuditor - INFO - Using server version 7.0.0 for audit
+2026-03-19 10:01:25,023 - RedisAuditor - WARNING - Command 'SET k v EX 10' failed audit: Key 'k' already exists. Executing 'SET' will overwrite it. (Level: warning)
+2026-03-19 10:01:25,029 - RedisAuditor - WARNING - Command 'FLUSHDB' failed audit: High-risk command 'FLUSHDB' is forbidden (Level: error)
+2026-03-19 10:01:25,029 - RedisAuditor - WARNING - Command 'FLUSHALL' failed audit: High-risk command 'FLUSHALL' is forbidden (Level: error)
+2026-03-19 10:01:25,030 - RedisAuditor - WARNING - Command 'SET user@1003 v EX 10' failed audit: Key 'user@1003' does not match naming pattern '^[a-zA-Z0-9_:-]+$' (Level: warning)
+2026-03-19 10:01:25,030 - RedisAuditor - WARNING - Command 'SET k v' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
+2026-03-19 10:01:25,030 - RedisAuditor - WARNING - Command 'COPY k1 k2' failed audit: Command 'COPY' is not supported in Redis 6.0 (Introduced in 6.2.0) (Level: error)
+2026-03-19 10:01:25,933 - RedisAuditor - INFO - Using server version 7.0.0 for audit
+2026-03-19 10:21:16,599 - RedisAuditor - WARNING - Command 'SET dba-test 12345' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
+2026-03-19 10:21:16,600 - RedisAuditor - WARNING - Command 'SET dba-test 12345' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
+2026-03-19 10:21:16,602 - RedisAuditor - INFO - Using server version 7.0.0 for audit
+2026-03-19 10:21:16,606 - RedisAuditor - WARNING - Command 'FLUSHDB' failed audit: High-risk command 'FLUSHDB' is forbidden (Level: error)
+2026-03-19 10:21:16,606 - RedisAuditor - WARNING - Command 'FLUSHALL' failed audit: High-risk command 'FLUSHALL' is forbidden (Level: error)
+2026-03-19 10:21:16,607 - RedisAuditor - WARNING - Command 'SET user@1003 v EX 10' failed audit: Key 'user@1003' does not match naming pattern '^[a-zA-Z0-9_:-]+$' (Level: warning)
+2026-03-19 10:21:16,607 - RedisAuditor - WARNING - Command 'SET k v' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
+2026-03-19 10:21:16,607 - RedisAuditor - WARNING - Command 'COPY k1 k2' failed audit: Command 'COPY' is not supported in Redis 6.0 (Introduced in 6.2.0) (Level: error)
+2026-03-19 10:21:17,364 - RedisAuditor - INFO - Using server version 7.0.0 for audit

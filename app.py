@@ -13,6 +13,9 @@ app = Flask(__name__)
 auditor = None
 parser = None
 
+def _resp(code, status, msg, http_status=200):
+    return jsonify({"code": code, "status": status, "msg": msg}), http_status
+
 @app.route('/audit', methods=['POST'])
 def audit():
     """
@@ -25,20 +28,20 @@ def audit():
     """
     data = request.get_json(silent=True)
     if not data:
-        return jsonify({"error": "No JSON data provided"}), 400
+        return _resp(40001, "failed", "No JSON data provided", 400)
 
     commands_text = data.get('commands') or data.get('command')
     if not commands_text:
-        return jsonify({"error": "No commands provided in 'commands' or 'command' field"}), 400
+        return _resp(40002, "failed", "No commands provided in 'commands' or 'command' field", 400)
 
     try:
         check = int(data.get('check', 1))
         execute = int(data.get('execute', 0))
     except Exception:
-        return jsonify({"error": "Invalid 'check' or 'execute' value, must be 0 or 1"}), 400
+        return _resp(40003, "failed", "Invalid 'check' or 'execute' value, must be 0 or 1", 400)
 
     if check not in (0, 1) or execute not in (0, 1):
-        return jsonify({"error": "Invalid 'check' or 'execute' value, must be 0 or 1"}), 400
+        return _resp(40003, "failed", "Invalid 'check' or 'execute' value, must be 0 or 1", 400)
 
     if check == 1:
         execute = 0
@@ -48,7 +51,7 @@ def audit():
     redis_client = None
     server_version = None
     if execute == 1 and not redis_info:
-        return jsonify({"error": "execute=1 requires 'redis_info'"}), 400
+        return _resp(40004, "failed", "execute=1 requires 'redis_info'", 400)
 
     if redis_info:
         try:
@@ -60,88 +63,65 @@ def audit():
             )
             success, error_msg = redis_client.connect()
             if not success:
-                return jsonify({"error": f"Failed to connect to Redis at {redis_client.host}:{redis_client.port}. Reason: {error_msg}"}), 400
+                return _resp(
+                    40005,
+                    "failed",
+                    f"Failed to connect to Redis at {redis_client.host}:{redis_client.port}. Reason: {error_msg}",
+                    400
+                )
             server_version = redis_client.get_server_version()
         except Exception as e:
-            return jsonify({"error": f"Error setting up Redis client: {str(e)}"}), 500
+            return _resp(50001, "failed", f"Error setting up Redis client: {str(e)}", 500)
 
     try:
         parsed_commands, syntax_results = parser.parse_script_with_syntax(commands_text)
 
-        parsed_by_order = {c.get('order'): c for c in parsed_commands}
-        audit_results = None
-        audit_by_order = {}
+        syntax_failed = next((s for s in syntax_results if s.get('status') != 'passed'), None)
+        if syntax_failed is not None:
+            order = syntax_failed.get('order')
+            msg = syntax_failed.get('message') or 'Syntax error'
+            if redis_client:
+                redis_client.close()
+            return _resp(1001, "failed", f"Syntax error at #{order}: {msg}", 200)
+
+        audit_results = []
         if check == 1 or execute == 1:
             audit_results = auditor.audit_commands(parsed_commands, redis_client=redis_client)
-            audit_by_order = {r.get('order'): r for r in audit_results}
 
-        results = []
-        for s in syntax_results:
-            order = s.get('order')
-            entry = {
-                'order': order,
-                'command': s.get('command'),
-                'syntax': {
-                    'status': s.get('status'),
-                    'message': s.get('message'),
-                    'level': s.get('level')
-                }
-            }
+        warn_item = None
+        if audit_results:
+            error_item = next((r for r in audit_results if r.get('status') == 'failed' and r.get('level') == 'error'), None)
+            warn_item = next((r for r in audit_results if r.get('status') == 'failed' and r.get('level') == 'warning'), None)
 
-            if s.get('status') == 'passed' and (check == 1 or execute == 1):
-                a = audit_by_order.get(order)
-                if a:
-                    entry['audit'] = {
-                        'status': a.get('status'),
-                        'message': a.get('message'),
-                        'level': a.get('level')
-                    }
+            if error_item is not None:
+                if redis_client:
+                    redis_client.close()
+                return _resp(2001, "failed", f"Audit error at #{error_item.get('order')}: {error_item.get('message')}", 200)
 
-            if execute == 1:
-                if s.get('status') != 'passed':
-                    entry['execute'] = {
-                        'status': 'skipped',
-                        'message': 'Skipped due to syntax error'
-                    }
-                else:
-                    a = audit_by_order.get(order)
-                    if a and a.get('status') == 'failed' and a.get('level') == 'error':
-                        entry['execute'] = {
-                            'status': 'skipped',
-                            'message': 'Skipped due to audit error'
-                        }
-                    else:
-                        cmd_data = parsed_by_order.get(order)
-                        if not cmd_data:
-                            entry['execute'] = {
-                                'status': 'skipped',
-                                'message': 'No parsed command for execution'
-                            }
-                        else:
-                            ok, exec_result = redis_client.execute(cmd_data.get('tokens'))
-                            entry['execute'] = {
-                                'status': 'succeeded' if ok else 'failed',
-                                'message': 'OK' if ok else exec_result,
-                                'result': exec_result if ok else None
-                            }
+        if execute == 1:
+            for cmd in parsed_commands:
+                ok, exec_result = redis_client.execute(cmd.get('tokens'))
+                if not ok:
+                    if redis_client:
+                        redis_client.close()
+                    return _resp(3001, "failed", f"Execute failed at #{cmd.get('order')}: {exec_result}", 200)
 
-            results.append(entry)
-
-        payload = {
-            'check': check,
-            'execute': execute,
-            'target_redis_version': server_version or auditor.target_version,
-            'results': results
-        }
+            if redis_client:
+                redis_client.close()
+            if warn_item is not None:
+                return _resp(2002, "warning", f"Audit warning at #{warn_item.get('order')}: {warn_item.get('message')}", 200)
+            return _resp(0, "passed", "OK", 200)
 
         if redis_client:
             redis_client.close()
 
-        return jsonify(payload)
+        if warn_item is not None:
+            return _resp(2002, "warning", f"Audit warning at #{warn_item.get('order')}: {warn_item.get('message')}", 200)
+        return _resp(0, "passed", "OK", 200)
     except Exception as e:
         if redis_client:
             redis_client.close()
-        return jsonify({"error": str(e)}), 500
+        return _resp(50002, "failed", str(e), 500)
 
 @app.route('/health', methods=['GET'])
 def health():

@@ -12,6 +12,11 @@ def setup_logger(name="PyRedisAudit", log_level="INFO", log_file=None):
     logger.propagate = False
 
     if logger.handlers:
+        for h in list(logger.handlers):
+            try:
+                h.close()
+            except Exception:
+                pass
         logger.handlers.clear()
 
     # Formatter

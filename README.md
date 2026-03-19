@@ -129,21 +129,9 @@ curl -X POST http://127.0.0.1:5000/audit \
 **响应示例:**
 ```json
 {
-  "check": 1,
-  "execute": 0,
-  "target_redis_version": "6.0",
-  "results": [
-    {
-      "order": 1,
-      "command": "SET dba-test 12345",
-      "syntax": { "status": "passed", "message": "Syntax OK", "level": "info" },
-      "audit": {
-        "status": "failed",
-        "message": "Write command 'SET' is missing TTL (EX/PX)",
-        "level": "warning"
-      }
-    }
-  ]
+  "code": 2002,
+  "status": "warning",
+  "msg": "Audit warning at #1: Write command 'SET' is missing TTL (EX/PX)"
 }
 ```
 
