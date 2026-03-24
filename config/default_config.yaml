@@ -38,4 +38,4 @@ rules:
   # Check if Key already exists (Requires live connection)
   check_overwrite:
     enable: true
-    level: warning"
+    level: "warning"
