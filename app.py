@@ -1,10 +1,12 @@
 import argparse
 import sys
+import logging
 from flask import Flask, request, jsonify
 from config.config_loader import ConfigLoader
 from core.parser import RedisCommandParser
 from core.auditor import RedisAuditor
 from core.redis_client import RedisClient
+from core.logger import setup_logger
 import os
 
 app = Flask(__name__)
@@ -15,6 +17,15 @@ parser = None
 
 def _resp(code, status, msg, http_status=200):
     return jsonify({"code": code, "status": status, "msg": msg}), http_status
+
+def _safe_str(value, max_len=500):
+    try:
+        s = str(value)
+    except Exception:
+        s = "<unprintable>"
+    if len(s) > max_len:
+        return s[:max_len] + "...(truncated)"
+    return s
 
 @app.route('/audit', methods=['POST'])
 def audit():
@@ -55,11 +66,20 @@ def audit():
 
     if redis_info:
         try:
+            # 严格检查 db 参数，只接受整数类型
+            db = redis_info.get('db', 0)
+            if not isinstance(db, int):
+                return _resp(
+                    40006,
+                    "failed",
+                    "Invalid 'db' value, must be an integer",
+                    400
+                )
             redis_client = RedisClient(
                 host=redis_info.get('host', '127.0.0.1'),
                 port=redis_info.get('port', 6379),
                 password=redis_info.get('password'),
-                db=redis_info.get('db', 0)
+                db=db
             )
             success, error_msg = redis_client.connect()
             if not success:
@@ -99,24 +119,30 @@ def audit():
                 return _resp(2001, "failed", f"Audit error at #{error_item.get('order')}: {error_item.get('message')}", 200)
 
         if execute == 1:
+            exec_summaries = []
             for cmd in parsed_commands:
                 ok, exec_result = redis_client.execute(cmd.get('tokens'))
                 if not ok:
                     if redis_client:
                         redis_client.close()
                     return _resp(3001, "failed", f"Execute failed at #{cmd.get('order')}: {exec_result}", 200)
+                exec_summaries.append(f"#{cmd.get('order')}: {_safe_str(exec_result)}")
 
             if redis_client:
                 redis_client.close()
+            exec_msg = "执行成功，Redis返回: " + "; ".join(exec_summaries)
             if warn_item is not None:
-                return _resp(2002, "warning", f"Audit warning at #{warn_item.get('order')}: {warn_item.get('message')}", 200)
-            return _resp(0, "passed", "OK", 200)
+                warn_msg = f"命令审批告警: {warn_item.get('message')}"
+                return _resp(2002, "warning", f"{warn_msg}；{exec_msg}", 200)
+            return _resp(0, "passed", exec_msg, 200)
 
         if redis_client:
             redis_client.close()
 
         if warn_item is not None:
             return _resp(2002, "warning", f"Audit warning at #{warn_item.get('order')}: {warn_item.get('message')}", 200)
+        if check == 1:
+            return _resp(0, "passed", f"命令审批正常，共{len(parsed_commands)}条命令", 200)
         return _resp(0, "passed", "OK", 200)
     except Exception as e:
         if redis_client:
@@ -176,18 +202,33 @@ def start_server():
 
         parser = RedisCommandParser()
         auditor = RedisAuditor(config_loader)
-        
-        print(f"--- PyRedisAudit Server Starting ---")
-        print(f"Config: {config_loader.config_path}")
-        print(f"Log File: {config_loader.get_log_file()}")
-        print(f"Log Level: {config_loader.get_log_level()}")
-        print(f"Target Redis Version: {auditor.target_version}")
-        print(f"Listening on {args.host}:{args.port}")
-        print(f"------------------------------------")
+
+        server_logger = setup_logger(
+            "PyRedisAuditServer",
+            config_loader.get_log_level(),
+            config_loader.get_log_file()
+        )
+
+        app.logger.handlers = server_logger.handlers
+        app.logger.setLevel(server_logger.level)
+        app.logger.propagate = False
+
+        werkzeug_logger = logging.getLogger("werkzeug")
+        werkzeug_logger.handlers = server_logger.handlers
+        werkzeug_logger.setLevel(server_logger.level)
+        werkzeug_logger.propagate = False
+
+        server_logger.info("--- PyRedisAudit Server Starting ---")
+        server_logger.info(f"Config: {config_loader.config_path}")
+        server_logger.info(f"Log File: {config_loader.get_log_file()}")
+        server_logger.info(f"Log Level: {config_loader.get_log_level()}")
+        server_logger.info(f"Target Redis Version: {auditor.target_version}")
+        server_logger.info(f"Listening on {args.host}:{args.port}")
+        server_logger.info("------------------------------------")
         
         app.run(host=args.host, port=args.port)
     except Exception as e:
-        print(f"Error starting server: {e}")
+        setup_logger("PyRedisAuditServer").exception("Error starting server")
         sys.exit(1)
 
 if __name__ == "__main__":

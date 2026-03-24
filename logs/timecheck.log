@@ -1,0 +1,14 @@
+2026-03-19 14:05:29.880 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-19 14:05:29.880 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-19 14:05:29.880 - PyRedisAuditServer - INFO - Log File: /home/work/PyRedisAudit/logs/timecheck.log
+2026-03-19 14:05:29.880 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-19 14:05:29.881 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-19 14:05:29.881 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5040
+2026-03-19 14:05:29.881 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-19 14:05:29.891 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5040
+ * Running on http://172.16.109.131:5040
+2026-03-19 14:05:29.891 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-19 14:05:41.244 - RedisAuditor - WARNING - Command 'SET k v' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
+2026-03-19 14:05:41.244 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2026 14:05:41] "POST /audit HTTP/1.1" 200 -

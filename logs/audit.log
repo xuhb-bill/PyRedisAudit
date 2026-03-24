@@ -127,3 +127,72 @@
 2026-03-19 10:21:16,607 - RedisAuditor - WARNING - Command 'SET k v' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
 2026-03-19 10:21:16,607 - RedisAuditor - WARNING - Command 'COPY k1 k2' failed audit: Command 'COPY' is not supported in Redis 6.0 (Introduced in 6.2.0) (Level: error)
 2026-03-19 10:21:17,364 - RedisAuditor - INFO - Using server version 7.0.0 for audit
+2026-03-19 11:55:18.386 - RedisAuditor - WARNING - Command 'SET dba-test 12345' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
+2026-03-19 11:55:18.387 - RedisAuditor - WARNING - Command 'SET dba-test 12345' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
+2026-03-19 11:55:18.389 - RedisAuditor - INFO - Using server version 7.0.0 for audit
+2026-03-19 11:55:18.416 - RedisAuditor - WARNING - Command 'FLUSHDB' failed audit: High-risk command 'FLUSHDB' is forbidden (Level: error)
+2026-03-19 11:55:18.416 - RedisAuditor - WARNING - Command 'FLUSHALL' failed audit: High-risk command 'FLUSHALL' is forbidden (Level: error)
+2026-03-19 11:55:18.416 - RedisAuditor - WARNING - Command 'SET user@1003 v EX 10' failed audit: Key 'user@1003' does not match naming pattern '^[a-zA-Z0-9_:-]+$' (Level: warning)
+2026-03-19 11:55:18.417 - RedisAuditor - WARNING - Command 'SET k v' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
+2026-03-19 11:55:18.417 - RedisAuditor - WARNING - Command 'COPY k1 k2' failed audit: Command 'COPY' is not supported in Redis 6.0 (Introduced in 6.2.0) (Level: error)
+2026-03-19 11:55:18.889 - RedisAuditor - INFO - Using server version 7.0.0 for audit
+2026-03-19 14:05:58.830 - RedisAuditor - WARNING - Command 'SET dba-test 12345' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
+2026-03-19 14:05:58.831 - RedisAuditor - WARNING - Command 'SET dba-test 12345' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
+2026-03-19 14:05:58.833 - RedisAuditor - INFO - Using server version 7.0.0 for audit
+2026-03-19 14:05:58.838 - RedisAuditor - WARNING - Command 'FLUSHDB' failed audit: High-risk command 'FLUSHDB' is forbidden (Level: error)
+2026-03-19 14:05:58.838 - RedisAuditor - WARNING - Command 'FLUSHALL' failed audit: High-risk command 'FLUSHALL' is forbidden (Level: error)
+2026-03-19 14:05:58.838 - RedisAuditor - WARNING - Command 'SET user@1003 v EX 10' failed audit: Key 'user@1003' does not match naming pattern '^[a-zA-Z0-9_:-]+$' (Level: warning)
+2026-03-19 14:05:58.838 - RedisAuditor - WARNING - Command 'SET k v' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
+2026-03-19 14:05:58.838 - RedisAuditor - WARNING - Command 'COPY k1 k2' failed audit: Command 'COPY' is not supported in Redis 6.0 (Introduced in 6.2.0) (Level: error)
+2026-03-19 14:05:59.497 - RedisAuditor - INFO - Using server version 7.0.0 for audit
+2026-03-19 14:51:59.118 - RedisAuditor - WARNING - Command 'SET dba-test 12345' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
+2026-03-19 14:51:59.402 - RedisAuditor - WARNING - Command 'SET dba-test 12345' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
+2026-03-19 14:51:59.437 - RedisAuditor - INFO - Using server version 7.0.0 for audit
+2026-03-19 14:51:59.467 - RedisAuditor - WARNING - Command 'FLUSHDB' failed audit: High-risk command 'FLUSHDB' is forbidden (Level: error)
+2026-03-19 14:51:59.471 - RedisAuditor - WARNING - Command 'FLUSHALL' failed audit: High-risk command 'FLUSHALL' is forbidden (Level: error)
+2026-03-19 14:51:59.471 - RedisAuditor - WARNING - Command 'SET user@1003 v EX 10' failed audit: Key 'user@1003' does not match naming pattern '^[a-zA-Z0-9_:-]+$' (Level: warning)
+2026-03-19 14:51:59.471 - RedisAuditor - WARNING - Command 'SET k v' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
+2026-03-19 14:51:59.472 - RedisAuditor - WARNING - Command 'COPY k1 k2' failed audit: Command 'COPY' is not supported in Redis 6.0 (Introduced in 6.2.0) (Level: error)
+2026-03-19 14:52:01.338 - RedisAuditor - INFO - Using server version 7.0.0 for audit
+2026-03-24 15:54:01.485 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 15:54:01.485 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 15:54:01.486 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 15:54:01.486 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 15:54:01.486 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 15:54:01.486 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5000
+2026-03-24 15:54:01.486 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 15:54:01.492 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.16.109.131:5000
+2026-03-24 15:54:01.492 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-24 15:54:12.219 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 15:54:12] "POST /audit HTTP/1.1" 200 -
+2026-03-24 15:54:22.893 - RedisAuditor - INFO - Using server version 5.0.8 for audit
+2026-03-24 15:54:22.942 - RedisAuditor - WARNING - Command 'set a 1' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
+2026-03-24 15:54:22.943 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 15:54:22] "POST /audit HTTP/1.1" 200 -
+2026-03-24 15:58:24.557 - RedisAuditor - INFO - Using server version 5.0.8 for audit
+2026-03-24 15:58:24.602 - RedisAuditor - WARNING - Command 'set a 1' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
+2026-03-24 15:58:24.603 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 15:58:24] "POST /audit HTTP/1.1" 200 -
+2026-03-24 15:58:37.474 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 15:58:37.474 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 15:58:37.474 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 15:58:37.474 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 15:58:37.474 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 15:58:37.474 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5000
+2026-03-24 15:58:37.474 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 15:59:02.615 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 15:59:02.616 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 15:59:02.616 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 15:59:02.616 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 15:59:02.616 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 15:59:02.616 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5001
+2026-03-24 15:59:02.616 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 15:59:02.621 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://172.16.109.131:5001
+2026-03-24 15:59:02.621 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-24 15:59:12.163 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 15:59:12] "[31m[1mPOST /audit HTTP/1.1[0m" 400 -
+2026-03-24 15:59:19.653 - RedisAuditor - INFO - Using server version 5.0.8 for audit
+2026-03-24 15:59:19.695 - RedisAuditor - WARNING - Command 'set a 1' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
+2026-03-24 15:59:19.696 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 15:59:19] "POST /audit HTTP/1.1" 200 -

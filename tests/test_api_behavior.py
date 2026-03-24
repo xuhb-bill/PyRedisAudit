@@ -85,3 +85,16 @@ class TestApiBehavior(unittest.TestCase):
         data = resp.get_json()
         self.assertEqual(data["code"], 0)
         self.assertEqual(data["status"], "passed")
+        self.assertIn("执行成功", data["msg"])
+        self.assertIn("OK", data["msg"])
+
+    def test_check_pass_message(self):
+        resp = self.client.post(
+            "/audit",
+            json={"command": "SET app:k v EX 10", "check": 1}
+        )
+        self.assertEqual(resp.status_code, 200)
+        data = resp.get_json()
+        self.assertEqual(data["code"], 0)
+        self.assertEqual(data["status"], "passed")
+        self.assertIn("命令审批正常", data["msg"])

@@ -21,7 +21,8 @@ def setup_logger(name="PyRedisAudit", log_level="INFO", log_file=None):
 
     # Formatter
     formatter = logging.Formatter(
-        '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        '%(asctime)s.%(msecs)03d - %(name)s - %(levelname)s - %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S'
     )
 
     # Console Handler
