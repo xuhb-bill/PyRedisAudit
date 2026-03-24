@@ -82,6 +82,15 @@ class RedisCommandParser:
         if not re.fullmatch(r'[A-Z][A-Z0-9_]*', cmd):
             return False, f"Invalid command name '{tokens[0]}'"
 
+        # 支持的 Redis 命令列表
+        supported_commands = {
+            'GET', 'SET', 'DEL', 'EXISTS', 'INCR', 'DECR', 'TTL', 'EXPIRE',
+            'HGET', 'HSET', 'HGETALL', 'HMSET', 'HDEL', 'HLEN',
+            'LPUSH', 'RPUSH', 'LPOP', 'RPOP', 'LLEN', 'LRANGE',
+            'SADD', 'SREM', 'SMEMBERS', 'SISMEMBER', 'SCARD',
+            'ZADD', 'ZREM', 'ZRANGE', 'ZRANK', 'ZCARD'
+        }
+
         if cmd == 'GET':
             if len(tokens) != 2:
                 return False, 'GET expects exactly 1 argument: GET <key>'
@@ -90,6 +99,178 @@ class RedisCommandParser:
         if cmd == 'SET':
             ok, msg = self._syntax_check_set(tokens)
             return ok, msg
+
+        if cmd == 'DEL':
+            if len(tokens) < 2:
+                return False, 'DEL expects at least 1 argument: DEL <key> [key ...]'
+            return True, None
+
+        if cmd == 'EXISTS':
+            if len(tokens) < 2:
+                return False, 'EXISTS expects at least 1 argument: EXISTS <key> [key ...]'
+            return True, None
+
+        if cmd == 'INCR':
+            if len(tokens) != 2:
+                return False, 'INCR expects exactly 1 argument: INCR <key>'
+            return True, None
+
+        if cmd == 'DECR':
+            if len(tokens) != 2:
+                return False, 'DECR expects exactly 1 argument: DECR <key>'
+            return True, None
+
+        if cmd == 'TTL':
+            if len(tokens) != 2:
+                return False, 'TTL expects exactly 1 argument: TTL <key>'
+            return True, None
+
+        if cmd == 'EXPIRE':
+            if len(tokens) != 3:
+                return False, 'EXPIRE expects exactly 2 arguments: EXPIRE <key> <seconds>'
+            if not re.fullmatch(r'\d+', str(tokens[2])):
+                return False, 'EXPIRE expects an integer argument for seconds'
+            return True, None
+
+        if cmd == 'HGET':
+            if len(tokens) != 3:
+                return False, 'HGET expects exactly 2 arguments: HGET <key> <field>'
+            return True, None
+
+        if cmd == 'HSET':
+            if len(tokens) < 4 or len(tokens) % 2 != 0:
+                return False, 'HSET expects at least 2 arguments: HSET <key> <field> <value> [field value ...]'
+            return True, None
+
+        if cmd == 'HGETALL':
+            if len(tokens) != 2:
+                return False, 'HGETALL expects exactly 1 argument: HGETALL <key>'
+            return True, None
+
+        if cmd == 'HMSET':
+            if len(tokens) < 4 or len(tokens) % 2 != 0:
+                return False, 'HMSET expects at least 2 arguments: HMSET <key> <field> <value> [field value ...]'
+            return True, None
+
+        if cmd == 'HDEL':
+            if len(tokens) < 3:
+                return False, 'HDEL expects at least 2 arguments: HDEL <key> <field> [field ...]'
+            return True, None
+
+        if cmd == 'HLEN':
+            if len(tokens) != 2:
+                return False, 'HLEN expects exactly 1 argument: HLEN <key>'
+            return True, None
+
+        if cmd == 'LPUSH':
+            if len(tokens) < 3:
+                return False, 'LPUSH expects at least 2 arguments: LPUSH <key> <value> [value ...]'
+            return True, None
+
+        if cmd == 'RPUSH':
+            if len(tokens) < 3:
+                return False, 'RPUSH expects at least 2 arguments: RPUSH <key> <value> [value ...]'
+            return True, None
+
+        if cmd == 'LPOP':
+            if len(tokens) not in (2, 3):
+                return False, 'LPOP expects 1 or 2 arguments: LPOP <key> [count]'
+            if len(tokens) == 3 and not re.fullmatch(r'\d+', str(tokens[2])):
+                return False, 'LPOP expects an integer argument for count'
+            return True, None
+
+        if cmd == 'RPOP':
+            if len(tokens) not in (2, 3):
+                return False, 'RPOP expects 1 or 2 arguments: RPOP <key> [count]'
+            if len(tokens) == 3 and not re.fullmatch(r'\d+', str(tokens[2])):
+                return False, 'RPOP expects an integer argument for count'
+            return True, None
+
+        if cmd == 'LLEN':
+            if len(tokens) != 2:
+                return False, 'LLEN expects exactly 1 argument: LLEN <key>'
+            return True, None
+
+        if cmd == 'LRANGE':
+            if len(tokens) != 4:
+                return False, 'LRANGE expects exactly 3 arguments: LRANGE <key> <start> <stop>'
+            if not re.fullmatch(r'-?\d+', str(tokens[2])):
+                return False, 'LRANGE expects an integer argument for start'
+            if not re.fullmatch(r'-?\d+', str(tokens[3])):
+                return False, 'LRANGE expects an integer argument for stop'
+            return True, None
+
+        if cmd == 'SADD':
+            if len(tokens) < 3:
+                return False, 'SADD expects at least 2 arguments: SADD <key> <member> [member ...]'
+            return True, None
+
+        if cmd == 'SREM':
+            if len(tokens) < 3:
+                return False, 'SREM expects at least 2 arguments: SREM <key> <member> [member ...]'
+            return True, None
+
+        if cmd == 'SMEMBERS':
+            if len(tokens) != 2:
+                return False, 'SMEMBERS expects exactly 1 argument: SMEMBERS <key>'
+            return True, None
+
+        if cmd == 'SISMEMBER':
+            if len(tokens) != 3:
+                return False, 'SISMEMBER expects exactly 2 arguments: SISMEMBER <key> <member>'
+            return True, None
+
+        if cmd == 'SCARD':
+            if len(tokens) != 2:
+                return False, 'SCARD expects exactly 1 argument: SCARD <key>'
+            return True, None
+
+        if cmd == 'ZADD':
+            if len(tokens) < 4:
+                return False, 'ZADD expects at least 3 arguments: ZADD <key> [NX|XX] [CH] [INCR] <score> <member> [score member ...]'
+            i = 2
+            while i < len(tokens):
+                opt = tokens[i].upper()
+                if opt in ('NX', 'XX', 'CH', 'INCR'):
+                    i += 1
+                    continue
+                break
+            if len(tokens) - i < 2 or (len(tokens) - i) % 2 != 0:
+                return False, 'ZADD expects score-member pairs after options'
+            for j in range(i, len(tokens), 2):
+                if not re.fullmatch(r'-?\d+(\.\d+)?', str(tokens[j])):
+                    return False, f'ZADD expects a numeric score, got {tokens[j]}'
+            return True, None
+
+        if cmd == 'ZREM':
+            if len(tokens) < 3:
+                return False, 'ZREM expects at least 2 arguments: ZREM <key> <member> [member ...]'
+            return True, None
+
+        if cmd == 'ZRANGE':
+            if len(tokens) not in (4, 5):
+                return False, 'ZRANGE expects 3 or 4 arguments: ZRANGE <key> <start> <stop> [WITHSCORES]'
+            if not re.fullmatch(r'-?\d+', str(tokens[2])):
+                return False, 'ZRANGE expects an integer argument for start'
+            if not re.fullmatch(r'-?\d+', str(tokens[3])):
+                return False, 'ZRANGE expects an integer argument for stop'
+            if len(tokens) == 5 and tokens[4].upper() != 'WITHSCORES':
+                return False, 'ZRANGE only supports WITHSCORES as optional argument'
+            return True, None
+
+        if cmd == 'ZRANK':
+            if len(tokens) != 3:
+                return False, 'ZRANK expects exactly 2 arguments: ZRANK <key> <member>'
+            return True, None
+
+        if cmd == 'ZCARD':
+            if len(tokens) != 2:
+                return False, 'ZCARD expects exactly 1 argument: ZCARD <key>'
+            return True, None
+
+        # 检查命令是否在支持的命令列表中
+        if cmd not in supported_commands:
+            return False, f"Unsupported command '{cmd}'"
 
         return True, None
 

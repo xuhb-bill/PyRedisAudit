@@ -196,3 +196,87 @@
 2026-03-24 15:59:19.653 - RedisAuditor - INFO - Using server version 5.0.8 for audit
 2026-03-24 15:59:19.695 - RedisAuditor - WARNING - Command 'set a 1' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: warning)
 2026-03-24 15:59:19.696 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 15:59:19] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:21:27.843 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 16:21:27.844 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 16:21:27.844 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 16:21:27.844 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 16:21:27.844 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 16:21:27.844 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5002
+2026-03-24 16:21:27.844 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 16:21:27.848 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://172.16.109.131:5002
+2026-03-24 16:21:27.848 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-24 16:21:47.455 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:21:47] "[31m[1mPOST /audit HTTP/1.1[0m" 400 -
+2026-03-24 16:21:47.459 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:21:47] "[31m[1mPOST /audit HTTP/1.1[0m" 400 -
+2026-03-24 16:21:47.464 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:21:47] "[31m[1mPOST /audit HTTP/1.1[0m" 400 -
+2026-03-24 16:21:47.471 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:21:47] "[31m[1mPOST /audit HTTP/1.1[0m" 400 -
+2026-03-24 16:21:47.475 - RedisAuditor - WARNING - Command 'set a 1' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: Warning)
+2026-03-24 16:21:47.476 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:21:47] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:22:05.101 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:22:05] "[31m[1mPOST /audit HTTP/1.1[0m" 400 -
+2026-03-24 16:22:20.191 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:22:20] "[31m[1mPOST /audit HTTP/1.1[0m" 400 -
+2026-03-24 16:22:20.202 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:22:20] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:22:20.207 - RedisAuditor - WARNING - Command 'set a 1' failed audit: Write command 'SET' is missing TTL (EX/PX) (Level: Warning)
+2026-03-24 16:22:20.208 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:22:20] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:22:20.215 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:22:20] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:22:20.221 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:22:20] "GET /health HTTP/1.1" 200 -
+2026-03-24 16:22:35.409 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:22:35] "[35m[1mPOST /audit HTTP/1.1[0m" 500 -
+2026-03-24 16:22:35.414 - RedisAuditor - WARNING - Command 'flushall' failed audit: High-risk command 'FLUSHALL' is forbidden (Level: Error)
+2026-03-24 16:22:35.414 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:22:35] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:22:35.420 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:22:35] "[31m[1mPOST /audit HTTP/1.1[0m" 400 -
+2026-03-24 16:22:35.425 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:22:35] "[31m[1mPOST /audit HTTP/1.1[0m" 400 -
+2026-03-24 16:39:30.544 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:39:30] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:39:41.748 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:39:41] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:39:55.963 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:39:55] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:40:18.589 - RedisAuditor - INFO - Using server version 5.0.8 for audit
+2026-03-24 16:40:18.637 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:40:18] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:41:00.375 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 16:41:00.376 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 16:41:00.376 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 16:41:00.376 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 16:41:00.376 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 16:41:00.376 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5002
+2026-03-24 16:41:00.376 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 16:41:09.471 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 16:41:09.471 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 16:41:09.471 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 16:41:09.471 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 16:41:09.471 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 16:41:09.471 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5003
+2026-03-24 16:41:09.471 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 16:41:09.476 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://172.16.109.131:5003
+2026-03-24 16:41:09.476 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-24 16:41:24.915 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:41:24] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:41:32.665 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:41:32] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:44:03.741 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 16:44:03.742 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 16:44:03.742 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 16:44:03.742 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 16:44:03.742 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 16:44:03.742 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5003
+2026-03-24 16:44:03.742 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 16:44:13.042 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 16:44:13.042 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 16:44:13.042 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 16:44:13.042 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 16:44:13.042 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 16:44:13.042 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5004
+2026-03-24 16:44:13.042 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 16:44:13.047 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5004
+ * Running on http://172.16.109.131:5004
+2026-03-24 16:44:13.047 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-24 16:44:38.713 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:44:38] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:44:38.719 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:44:38] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:44:38.725 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:44:38] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:44:38.729 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:44:38] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:44:38.733 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:44:38] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:44:38.742 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:44:38] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:44:38.747 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:44:38] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:44:38.752 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:44:38] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:44:38.757 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:44:38] "POST /audit HTTP/1.1" 200 -

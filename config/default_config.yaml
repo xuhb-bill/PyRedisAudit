@@ -11,19 +11,19 @@ rules:
   # Check if commands are supported in target Redis version
   check_version_compatibility:
     enable: true
-    level: "Error" # error, warning
+    level: "error" # error, warning
 
   # Forbidden high-risk commands
   check_high_risk_commands:
     enable: true
-    level: "Error"
+    level: "error"
     params:
       forbidden: ["FLUSHALL", "FLUSHDB", "KEYS", "SHUTDOWN","EVAL","SCRIPT","EVALSHA"]
 
   # Check Key naming convention
   check_key_naming:
     enable: true
-    level: "Warning"
+    level: "warning"
     params:
       pattern: "^[a-zA-Z0-9_:-]+$" # Simple alphanumeric with : and -
       max_length: 128
@@ -31,11 +31,11 @@ rules:
   # Enforce TTL for write commands
   check_ttl_requirement:
     enable: true
-    level: "Warning"
+    level: "warning"
     params:
       commands: ["SET", "HSET", "LPUSH", "SADD", "ZADD"]
 
   # Check if Key already exists (Requires live connection)
   check_overwrite:
     enable: true
-    level: "Warning"
+    level: warning"
