@@ -12,7 +12,61 @@ class RedisCommandParser:
         results = []
         parsed_commands = []
         order = 0
-        for raw_line in script_text.split('\n'):
+        
+        # 首先尝试直接将整个脚本作为一条命令进行检查
+        # 这可以处理因为 shell 解析导致的换行符问题
+        combined_line = script_text.strip()
+        if combined_line and not combined_line.startswith('#'):
+            # 临时将换行符替换为空格，以便正确分词
+            temp_line = combined_line.replace('\n', ' ').replace('\r', ' ')
+            ok, message = self.syntax_check_line(temp_line)
+            if ok:
+                # 如果整个脚本作为一条命令通过了语法检查，直接返回结果
+                results.append({
+                    'order': 1,
+                    'command': combined_line,
+                    'status': 'passed',
+                    'message': 'Syntax OK',
+                    'level': 'info'
+                })
+                parsed = self.parse_line(temp_line)
+                if parsed:
+                    parsed['order'] = 1
+                    parsed_commands.append(parsed)
+                return parsed_commands, results
+        
+        # 如果直接检查失败，再按换行符分割命令进行检查
+        # 处理包含在引号内的换行符，确保命令不会被错误分割
+        # 首先将所有引号内的内容替换为占位符，然后分割命令，最后恢复占位符
+        import re
+        
+        # 匹配单引号或双引号内的内容，包括转义的引号
+        quoted_pattern = re.compile(r'("(?:\\.|[^"])*"|\'(?:\\.|[^\'])*\')')
+        
+        # 找出所有引号内的内容
+        quoted_matches = quoted_pattern.findall(script_text)
+        
+        # 创建占位符映射
+        placeholders = {}
+        for i, match in enumerate(quoted_matches):
+            placeholder = f"__QUOTE_PLACEHOLDER_{i}__"
+            placeholders[placeholder] = match
+            # 替换引号内的内容为占位符
+            script_text = script_text.replace(match, placeholder)
+        
+        # 按换行符分割命令
+        lines = script_text.split('\n')
+        
+        # 恢复占位符
+        restored_lines = []
+        for line in lines:
+            restored_line = line
+            for placeholder, original in placeholders.items():
+                restored_line = restored_line.replace(placeholder, original)
+            restored_lines.append(restored_line)
+        
+        # 处理每一行命令
+        for raw_line in restored_lines:
             line = raw_line.strip()
             if not line or line.startswith('#'):
                 continue
@@ -30,6 +84,29 @@ class RedisCommandParser:
                 if parsed:
                     parsed['order'] = order
                     parsed_commands.append(parsed)
+        
+        # 特殊处理：如果只有一条命令且语法检查失败，尝试将所有行合并为一条命令重新检查
+        if len(results) == 1 and results[0]['status'] == 'failed':
+            combined_line = ' '.join([line.strip() for line in restored_lines if line.strip() and not line.strip().startswith('#')])
+            if combined_line:
+                # 临时将换行符替换为空格，以便正确分词
+                temp_line = combined_line.replace('\n', ' ').replace('\r', ' ')
+                ok, message = self.syntax_check_line(temp_line)
+                if ok:
+                    # 替换原来的结果
+                    results[0] = {
+                        'order': 1,
+                        'command': combined_line,
+                        'status': 'passed',
+                        'message': 'Syntax OK',
+                        'level': 'info'
+                    }
+                    # 重新解析命令
+                    parsed = self.parse_line(temp_line)
+                    if parsed:
+                        parsed['order'] = 1
+                        parsed_commands = [parsed]
+        
         return parsed_commands, results
 
     def parse_line(self, line):
@@ -296,9 +373,17 @@ class RedisCommandParser:
         return True, None
 
     def _tokenize(self, line):
+        # 首先将整个命令中的换行符替换为空格，以便正确分词
+        # 这样可以处理引号内包含换行符的情况
+        line = line.replace('\n', ' ').replace('\r', ' ')
+        
+        # 分词
         tokens = self.tokenizer.findall(line)
+        
         if not tokens:
             return None
+        
+        # 去除引号
         return [self._unquote(t) for t in tokens]
 
     def _has_unbalanced_quotes(self, line):

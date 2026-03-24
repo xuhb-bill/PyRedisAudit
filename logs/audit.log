@@ -280,3 +280,170 @@
 2026-03-24 16:44:38.747 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:44:38] "POST /audit HTTP/1.1" 200 -
 2026-03-24 16:44:38.752 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:44:38] "POST /audit HTTP/1.1" 200 -
 2026-03-24 16:44:38.757 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:44:38] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:52:25.601 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:52:25] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:54:57.976 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 16:54:57.976 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 16:54:57.976 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 16:54:57.977 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 16:54:57.977 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 16:54:57.977 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5004
+2026-03-24 16:54:57.977 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 16:55:05.487 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 16:55:05.487 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 16:55:05.487 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 16:55:05.487 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 16:55:05.488 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 16:55:05.488 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5005
+2026-03-24 16:55:05.488 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 16:55:05.490 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5005
+ * Running on http://172.16.109.131:5005
+2026-03-24 16:55:05.490 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-24 16:55:17.299 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:55:17] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:55:59.971 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 16:55:59.971 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 16:55:59.971 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 16:55:59.971 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 16:55:59.971 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 16:55:59.972 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5005
+2026-03-24 16:55:59.972 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 16:56:10.740 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 16:56:10.740 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 16:56:10.740 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 16:56:10.740 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 16:56:10.740 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 16:56:10.740 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5006
+2026-03-24 16:56:10.740 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 16:56:10.742 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5006
+ * Running on http://172.16.109.131:5006
+2026-03-24 16:56:10.742 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-24 16:56:22.834 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:56:22] "POST /audit HTTP/1.1" 200 -
+2026-03-24 16:58:27.115 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 16:58:27.115 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 16:58:27.115 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 16:58:27.115 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 16:58:27.116 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 16:58:27.116 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5006
+2026-03-24 16:58:27.116 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 16:58:33.571 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 16:58:33.571 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 16:58:33.571 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 16:58:33.571 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 16:58:33.571 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 16:58:33.571 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5007
+2026-03-24 16:58:33.571 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 16:58:33.573 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5007
+ * Running on http://172.16.109.131:5007
+2026-03-24 16:58:33.573 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-24 16:58:43.285 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 16:58:43] "POST /audit HTTP/1.1" 200 -
+2026-03-24 17:01:19.726 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 17:01:19.727 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 17:01:19.727 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 17:01:19.727 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 17:01:19.727 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 17:01:19.727 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5007
+2026-03-24 17:01:19.727 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 17:01:26.654 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 17:01:26.654 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 17:01:26.654 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 17:01:26.654 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 17:01:26.654 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 17:01:26.654 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5008
+2026-03-24 17:01:26.654 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 17:01:26.656 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5008
+ * Running on http://172.16.109.131:5008
+2026-03-24 17:01:26.656 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-24 17:01:36.188 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 17:01:36] "POST /audit HTTP/1.1" 200 -
+2026-03-24 17:06:39.040 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 17:06:39.040 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 17:06:39.040 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 17:06:39.041 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 17:06:39.041 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 17:06:39.041 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5008
+2026-03-24 17:06:39.041 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 17:06:46.626 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 17:06:46.626 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 17:06:46.626 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 17:06:46.626 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 17:06:46.626 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 17:06:46.626 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5009
+2026-03-24 17:06:46.626 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 17:06:46.628 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5009
+ * Running on http://172.16.109.131:5009
+2026-03-24 17:06:46.628 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-24 17:06:56.828 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 17:06:56] "POST /audit HTTP/1.1" 200 -
+2026-03-24 17:15:05.288 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 17:15:05.289 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 17:15:05.289 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 17:15:05.289 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 17:15:05.289 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 17:15:05.289 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5009
+2026-03-24 17:15:05.289 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 17:15:13.353 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 17:15:13.353 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 17:15:13.353 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 17:15:13.353 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 17:15:13.353 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 17:15:13.353 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5010
+2026-03-24 17:15:13.353 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 17:15:13.355 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5010
+ * Running on http://172.16.109.131:5010
+2026-03-24 17:15:13.355 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-24 17:15:23.421 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 17:15:23] "POST /audit HTTP/1.1" 200 -
+2026-03-24 17:19:13.095 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 17:19:13.096 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 17:19:13.096 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 17:19:13.096 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 17:19:13.096 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 17:19:13.096 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5010
+2026-03-24 17:19:13.096 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 17:19:19.464 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 17:19:19.464 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 17:19:19.464 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 17:19:19.464 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 17:19:19.464 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 17:19:19.464 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5011
+2026-03-24 17:19:19.464 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 17:19:19.467 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5011
+ * Running on http://172.16.109.131:5011
+2026-03-24 17:19:19.467 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-24 17:19:29.389 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 17:19:29] "POST /audit HTTP/1.1" 200 -
+2026-03-24 17:20:02.456 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 17:20:02.456 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 17:20:02.456 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 17:20:02.456 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 17:20:02.456 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 17:20:02.456 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5011
+2026-03-24 17:20:02.456 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 17:20:09.642 - PyRedisAuditServer - INFO - --- PyRedisAudit Server Starting ---
+2026-03-24 17:20:09.642 - PyRedisAuditServer - INFO - Config: /home/work/PyRedisAudit/config/default_config.yaml
+2026-03-24 17:20:09.642 - PyRedisAuditServer - INFO - Log File: logs/audit.log
+2026-03-24 17:20:09.642 - PyRedisAuditServer - INFO - Log Level: INFO
+2026-03-24 17:20:09.642 - PyRedisAuditServer - INFO - Target Redis Version: 6.0
+2026-03-24 17:20:09.642 - PyRedisAuditServer - INFO - Listening on 0.0.0.0:5012
+2026-03-24 17:20:09.642 - PyRedisAuditServer - INFO - ------------------------------------
+2026-03-24 17:20:09.644 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5012
+ * Running on http://172.16.109.131:5012
+2026-03-24 17:20:09.644 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-24 17:20:18.410 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 17:20:18] "POST /audit HTTP/1.1" 200 -
+2026-03-24 17:20:36.030 - RedisAuditor - INFO - Using server version 5.0.8 for audit
+2026-03-24 17:20:36.072 - RedisAuditor - WARNING - Command 'set a '  ' ex 1' failed audit: Key 'a' already exists. Executing 'SET' will overwrite it. (Level: warning")
+2026-03-24 17:20:36.073 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 17:20:36] "POST /audit HTTP/1.1" 200 -
+2026-03-24 17:21:17.271 - RedisAuditor - INFO - Using server version 5.0.8 for audit
+2026-03-24 17:21:17.321 - RedisAuditor - WARNING - Command 'set a '\r\n' ex 1' failed audit: Key 'a' already exists. Executing 'SET' will overwrite it. (Level: warning")
+2026-03-24 17:21:17.322 - werkzeug - INFO - 127.0.0.1 - - [24/Mar/2026 17:21:17] "POST /audit HTTP/1.1" 200 -
